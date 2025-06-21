@@ -1,0 +1,22 @@
+body {
+    padding: 20px;
+    margin:0;
+    background-color: aqua;
+    font-family: sans-serif;
+
+}
+.container {
+    background-color: azure;
+    margin: 40px auto;
+    max-width: 1000px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0cap;
+}
+form{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}ul {
+    padding: 0;
+}
