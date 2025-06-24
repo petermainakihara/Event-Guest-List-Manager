@@ -1,29 +1,71 @@
-const input = document.getElementById("name");
-const list = document.getElementById("list");
-const addButton = document.getElementById("add");
+const form = document.getElementById('guest-form');
+const nameInput = document.getElementById('guest-name');
+const guestList = document.getElementById('guest-list');
 
-addButton.addEventListener("click", function() {
-  const name = input.value;
-  const rsvp = document.createElement("button");
-  rsvp.textContent = "Not Attending";
+ 
+let guests = [];
 
-  rsvp.addEventListener("click", function() {
-    if (rsvp.textContent === "Not Attending") {
-      rsvp.textContent = "Attending";
-    } else {
-      rsvp.textContent = "Not Attending";
-    }
+
+function MyFormSubmit(event) {
+  event.preventDefault();
+
+  const guestName = nameInput.value.trim();
+
+  
+  if (!guestName) {
+    alert('Please enter a guest name!');
+    return;
+  }
+
+  
+  if (guests.length >= 10) {
+    alert('Guest list is full! Maximum 10 guests allowed.');
+    return;
+  }
+
+  
+  const guest = {
+    id: Date.now(), 
+    name: guestName,
+    attending: false        
+  };
+
+  guests.push(guest);       
+  nameInput.value = ''; 
+  showGuests();            
+}
+
+
+function showGuests() {
+  guestList.innerHTML = '';
+
+  guests.forEach(guest => {
+    const li = document.createElement('li');
+
+
+    li.textContent = `${guest.name} — ${guest.attending ? 'Attending' : 'Not Attending'}`;
+
+  
+    const rsvpBtn = document.createElement('button');
+    rsvpBtn.textContent = 'Toggle RSVP';
+    rsvpBtn.onclick = () => {
+      guest.attending = !guest.attending;
+      showGuests(); 
+    };
+    li.appendChild(rsvpBtn);
+
+  
+    const removeBtn = document.createElement('button');
+    removeBtn.textContent = 'Remove';
+    removeBtn.onclick = () => {
+      guests = guests.filter(g => g.id !== guest.id);
+      showGuests();
+    };
+    li.appendChild(removeBtn);
+
+    guestList.appendChild(li);
   });
+}
 
-  const remove = document.createElement("button");
-  remove.textContent = "Remove";
 
-  remove.addEventListener("click", function() {
-    list.removeChild(item);
-  });
-
-  item.appendChild(nameSpan);
-  item.appendChild(rsvp);
-  item.appendChild(remove);
-  list.appendChild(item);
-});
+form.addEventListener('submit', MyFormSubmit);

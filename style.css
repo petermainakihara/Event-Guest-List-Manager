@@ -1,22 +1,31 @@
 body {
-    padding: 20px;
-    margin:0;
-    background-color: aqua;
-    font-family: sans-serif;
+font-family: Arial, sans-serif;
+background: white;
+padding: 20px;
+}
 
-}
 .container {
-    background-color: azure;
-    margin: 40px auto;
-    max-width: 1000px;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0cap;
+max-width: 600px;
+margin: auto;
+background: #34c8e2;
+padding: 20px;
+border-radius: 8px;
 }
-form{
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}ul {
-    padding: 0;
+
+form {
+display: flex;
+gap: 10px;
+margin-bottom: 20px;
 }
+
+#guest-name, select, button {
+padding: 8px;
+font-size: 16px;
+}
+
+#guest-list {
+list-style: none;
+padding: 0;
+}
+
+
